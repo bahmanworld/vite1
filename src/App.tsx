@@ -25,6 +25,8 @@ const App = () => {
 
   // comment added again
 
+  // master branch commented
+
   return (
     <>
       <input ref={inputRef}
