@@ -22,6 +22,8 @@ const App = () => {
     inputRef.current?.focus()
   }
 
+  // bahman world are working on it
+
   return (
     <>
       <input ref={inputRef}
