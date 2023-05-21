@@ -23,9 +23,6 @@ const App = () => {
     inputRef.current?.focus()
   }
 
-  // comment added again
-
-  // master branch commented
 
   return (
     <>
