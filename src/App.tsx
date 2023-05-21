@@ -27,6 +27,8 @@ const App = () => {
 
   // this line on bahman-dev-2 branch
 
+  // master branch commented
+
   return (
     <>
       <input ref={inputRef}
