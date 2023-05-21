@@ -3,7 +3,8 @@ import './App.css'
 
 type Todo = {
   title: string,
-  completed: boolean
+  completed: boolean,
+  code?: number
 }
 
 const App = () => {
