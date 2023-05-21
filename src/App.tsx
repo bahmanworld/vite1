@@ -16,7 +16,7 @@ const App = () => {
     if (title == '') return;
     setTodos(prev => [...prev, {
       title: title,
-      completed: false
+      completed: false // default: false
     }])
     setTitle("")
     inputRef.current?.focus()
