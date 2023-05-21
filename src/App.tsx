@@ -23,6 +23,8 @@ const App = () => {
     inputRef.current?.focus()
   }
 
+  // comment added again
+
   return (
     <>
       <input ref={inputRef}
