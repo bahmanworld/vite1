@@ -1,8 +1,6 @@
 import * as React from 'react'
 import './App.css'
 
-// this is a professional todos app
-
 type Todo = {
   title: string,
   completed: boolean,
