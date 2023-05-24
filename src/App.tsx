@@ -47,8 +47,8 @@ const App = () => {
         onChange={(e) => {
           console.warn(e.item.id, '@', e.from.id, '@', e.to.id)
         }}
-        dragoverBubble={true}
-        animation={100}
+        // dragoverBubble={true}
+        animation={500}
         handle={'.handle'}
       >
         {todos.map((todo, index) => {
