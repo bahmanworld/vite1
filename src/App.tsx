@@ -1,7 +1,9 @@
 import * as React from 'react'
 import './App.css'
+import {ReactSortable} from 'react-sortablejs'
 
 type Todo = {
+  id: number,
   title: string,
   completed: boolean,
   code?: number
@@ -16,6 +18,7 @@ const App = () => {
   const addTodo = () => {
     if (title == '') return;
     setTodos(prev => [...prev, {
+      id: todos.length - 1,
       title: title,
       completed: false // default: false
     }])
@@ -37,27 +40,48 @@ const App = () => {
              style={{width: 500, padding: 20, fontSize: 20, border: '1px solid #fff4', borderRadius: 20}}/>
       <br/>
       <br/>
-      {todos.map((todo, index) => {
-        return <div>
-          <span style={{
-            textDecoration: todo.completed ? 'line-through' : 'none',
-            opacity: todo.completed ? .5 : 1
-          }}
-                onClick={() => {
-                  const lastTodos = [...todos]
-                  lastTodos[index].completed = !lastTodos[index].completed
-                  setTodos(lastTodos)
-                }}>{todo.title}</span>
-          {' '}
-          <button onClick={() => {
-            if (confirm("Are you sure to delete this todo?")) {
-              setTodos(todos.filter((_, i) => i != index))
-            }
+      count: {todos.length}
+      <ReactSortable
+        list={todos}
+        setList={items => setTodos(items)}
+        onChange={(e) => {
+          console.warn(e.item.id, '@', e.from.id, '@', e.to.id)
+        }}
+        dragoverBubble={true}
+        animation={100}
+        handle={'.handle'}
+      >
+        {todos.map((todo, index) => {
+          return <div style={{
+            padding: 20,
+            background: '#fff1',
+            borderRadius: 10,
+            marginBottom: 10
           }}>
-            ×
-          </button>
-        </div>
-      })}
+            <span className={"handle"} style={{marginInlineEnd: 5, cursor: 'move'}}>📝</span>
+            <span
+              style={{
+                textDecoration: todo.completed ? 'line-through' : 'none',
+                opacity: todo.completed ? .5 : 1
+              }}
+              onClick={() => {
+                const lastTodos = [...todos]
+                lastTodos[index].completed = !lastTodos[index].completed
+                setTodos(lastTodos)
+              }}>
+                    {todo.title}
+                  </span>
+            {' '}
+            <button onClick={() => {
+              if (confirm("Are you sure to delete this todo?")) {
+                setTodos(todos.filter((_, i) => i != index))
+              }
+            }}>
+              ×
+            </button>
+          </div>
+        })}
+      </ReactSortable>
     </>
   )
 }
